@@ -36,19 +36,17 @@ function Add(props) {
             .then(data => console.log(data))
 
     }
-    const today = new Date().toISOString().substr(0,10);;
+    const today = new Date().toISOString().substr(0, 10);;
     return (
-        <div>
+        <div className>
             <h1>ADD</h1>
             <form onSubmit={handleSubmit}>
-                <label>
-                    ID: <input type="number" name="Id" /> <br></br>
+                    ID:  <input type="number" name="Id" /> <br></br>
                     Mother: <input type="number" name="Mother" /><br></br>
                     Father: <input type="number" name="Father" /><br></br>
-                    Date Of Birth: <input type="date" name="DateOfBirth" defaultValue={today}/><br></br>
+                    Date Of Birth: <input type="date" name="DateOfBirth" defaultValue={today} /><br></br>
                     Gender: <input type="text" name="Gender" /><br></br>
-                    <input type="submit" value="Submit" />
-                </label>
+                    <input type="submit" value="Submit" className="button" />
             </form>
         </div>
     )

@@ -27,7 +27,10 @@ function Edit(props) {
                 "Content-Type": "application/json"
             }
         }).then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => { 
+                console.log(data)
+                setShowEdit(false)
+            })
     }
 
     function handleEdit(e) {
@@ -71,7 +74,7 @@ function Edit(props) {
                             Father: <input type="number" name="Father" defaultValue={item.father} /><br></br>
                             Date Of Birth: <input type="date" name="DateOfBirth" defaultValue={item.dateOfBirth} /><br></br>
                             Gender: <input type="text" name="Gender" defaultValue={item.gender} /><br></br>
-                            <input type="submit" value="Submit" />
+                            <input type="submit" value="Submit"/>
                         </label>
                     </form >
                 </div >
@@ -79,7 +82,7 @@ function Edit(props) {
                 <div>
                     <form onSubmit={handleEdit}>
                         <label>
-                            ID: <input type="number" name="Id" /> <br></br>
+                            ID: <input type="number" name="Id"/> <br></br>
                             <input type="submit" value="Edit" />
                         </label>
 

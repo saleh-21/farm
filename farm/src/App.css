@@ -1,17 +1,9 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+
 
 .App-header {
   background-color: #282c34;
@@ -35,4 +27,62 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+input[type=text] {
+  padding:5px; 
+  border:2px solid #ccc; 
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+input[type=text]:focus {
+  border-color:#333;
+}
+
+input[type=number] {
+  padding:5px; 
+  border:2px solid #ccc; 
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+input[type=number]:focus {
+  border-color:#333;
+}
+
+input[type=date] {
+  padding:5px; 
+  border:2px solid #ccc; 
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+input[type=date]:focus {
+  border-color:#333;
+}
+
+input[type=submit] {
+  padding:5px 15px; 
+  background:#ccc; 
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+}
+
+.addComp{
+  border: #ccc 2px solid;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.editComp{
+  border: #ccc 2px solid;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+
 }
