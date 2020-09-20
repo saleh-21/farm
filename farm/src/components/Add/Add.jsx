@@ -50,10 +50,6 @@ function Add(props) {
                     <input type="submit" value="Submit" />
                 </label>
             </form>
-
-
-
-
         </div>
     )
 

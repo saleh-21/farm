@@ -25,8 +25,7 @@ const Animal = new mongoose.model('Animal', {
 
 
 app.post('/add', (req, res) => {
-
-	const {Id, Mother, Father, DateOfBirth,Gender} = req.body
+	const { Id, Mother, Father, DateOfBirth, Gender } = req.body
 	const a = new Animal({
 		ID: Id,
 		mother: Mother,
@@ -39,6 +38,30 @@ app.post('/add', (req, res) => {
 	res.send(true)
 })
 
+
+app.post('/getItemToEdit', (req, res) => {
+	const { Id } = req.body
+	Animal.find({ ID: Id }).then(data => {
+		console.log(data)
+		res.send(data)
+	})
+})
+
+
+app.post('/edit', (req, res) => {
+	const { Id, Mother, Father, DateOfBirth, Gender } = req.body
+	// const a = new Animal({
+	// 	ID: Id,
+	// 	mother: Mother,
+	// 	father: Father,
+	// 	dateOfBirth: DateOfBirth,
+	// 	gender: Gender
+	// })
+	// a.save().then(console.log("DONE"))
+	Animal.updateOne({ ID: Id }, { $set: { mother: Mother, father: Father, dateOfBirth: DateOfBirth, gender: Gender } }).then(console.log("UPDATED"))
+	console.log(req.body)
+	res.send(true)
+})
 
 
 const port = process.env.PORT || 4000;

@@ -7,17 +7,8 @@ import "./Edit.css"
 
 function Edit(props) {
 
-    let { data, setData, editData } = props
-    const [newData, setNewData] = useState({});
     const [showEdit, setShowEdit] = useState(false)
     const [item, setItem] = useState({})
-
-    useEffect(() => {
-        console.log(newData)
-        setData([...data, newData])
-        console.log(data)
-    }, [newData])
-
 
     function handleSubmit(e) {
 
@@ -29,28 +20,41 @@ function Edit(props) {
         const DateOfBirth = e.target.DateOfBirth.value
         const Gender = e.target.Gender.value
 
-        editData.map(item => {
-            if(item.Id == Id){
-                item.Mother = Mother;
-                item.Father = Father;
-                item.DateOfBirth = DateOfBirth;
-                item.Gender = Gender;
+        fetch('/edit', {
+            method: "POST",
+            body: JSON.stringify({ Id, Mother, Father, DateOfBirth, Gender }),
+            headers: {
+                "Content-Type": "application/json"
             }
-        })
-        
-
-        setShowEdit(false)
+        }).then(res => res.json())
+            .then(data => console.log(data))
     }
 
     function handleEdit(e) {
         e.preventDefault();
-        editData.map(item => {
-            console.log(item.Id)
-            if (item.Id == e.target.Id.value) {
-                setShowEdit(true)
-                setItem(item)
+        const Id = e.target.Id.value
+        console.log(Id)
+        fetch('/getItemToEdit', {
+            method: "POST",
+            body: JSON.stringify({ Id }),
+            headers: {
+                "Content-Type": "application/json"
             }
-        })
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(data.length > 0){
+                    setItem(data[0])
+                    console.log(data[0])
+                    setShowEdit(true)
+                }
+                else{
+                    console.log("NOT FOUND")
+                }
+            })
+
+        
+        
 
     }
 
@@ -62,14 +66,13 @@ function Edit(props) {
                 <div>
                     <form onSubmit={handleSubmit}>
                         <label>
-                            ID: <input type="number" name="Id" Value={item.Id} /> <br></br>
-                            Mother: <input type="number" name="Mother" defaultValue={item.Mother} /><br></br>
-                            Father: <input type="number" name="Father" defaultValue={item.Father}  /><br></br>
-                            Date Of Birth: <input type="date" name="DateOfBirth" defaultValue={item.DateOfBirth} /><br></br>
-                            Gender: <input type="text" name="Gender" defaultValue={item.Gender} /><br></br>
+                            ID: <input type="number" name="Id" value={item.ID} /> <br></br>
+                            Mother: <input type="number" name="Mother" defaultValue={item.mother} /><br></br>
+                            Father: <input type="number" name="Father" defaultValue={item.father} /><br></br>
+                            Date Of Birth: <input type="date" name="DateOfBirth" defaultValue={item.dateOfBirth} /><br></br>
+                            Gender: <input type="text" name="Gender" defaultValue={item.gender} /><br></br>
                             <input type="submit" value="Submit" />
                         </label>
-
                     </form >
                 </div >
                 :
