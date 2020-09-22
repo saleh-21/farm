@@ -15,13 +15,30 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import MaterialTable from 'material-table';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 
-function MainTable(props){
-    // const {animals} = props
+function MainTable() {
 
-      // Intiliaze Icons 
+  const [animals, setAnimals] = useState([])
+
+  useEffect(() => {
+    fetch('/getAllData', {
+      method: "POST",
+      body: JSON.stringify({}),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => res.json())
+      .then(data => {
+        setAnimals(data)
+      })
+  }, [])
+
+
+  // Intiliaze Icons 
   const tableIcons = {
     Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
     FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
@@ -39,12 +56,12 @@ function MainTable(props){
   const columns = [
     {
       title: 'ID', field: 'ID',
-      cellStyle: {  
+      cellStyle: {
         minWidth: 150,
         border: '1px solid steelBlue',
         backgroundColor: 'whiteSmoke',
         color: 'black',
-       
+
       },
     },
     {
@@ -87,54 +104,46 @@ function MainTable(props){
     }
   ]
 
-  // 
-//   let data = []
-//   tasks.map((task) => {
-//     return data = [...data,
-//     {
-//       jiraId: task.jiraItem.id,
-//       jiraName: task.jiraItem.name,
-//       jiraType: task.jiraItem.type,
-//       jiraPriority: task.jiraItem.priority,
-//       JiraItemStatus: task.jiraItem.status,
-//       jiraParentId: task.jiraItem.parentId,
-//       functionalTest: task.jiraItem.functionalTest,
-//       qaRepresentative: task.jiraItem.qaRepresentative,
-//       fixVersion: task.jiraItem.fixVersion,
-//       qcRequirementId: task.qcItem.requirementId,
-//       qcRequirementType: task.qcItem.requirementType,
-//       qcStatus: task.qcItem.status,
-//       updatedTime: task.diffItem.updatedTime,
-//       modifyType:task.diffItem.type,
-//       fieldName: task.diffItem.updatedField.fieldName,
-//       oldValue: task.diffItem.updatedField.oldValue,
-//       newValue: task.diffItem.updatedField.newValue,
-//     }
-//     ]
-//   })
-  
+
+
+  console.log(animals)
+
+  let data = []
+  animals.map((animal) => {
+    return data = [...data,
+    {
+      ID: animal.ID,
+      Mother: animal.mother,
+      Father: animal.father,
+      DateOfBirth: animal.dateOfBirth,
+      Gender: animal.gender,
+
+    }
+    ]
+  })
+
   return (
-        <MaterialTable
-          title="ANIMALS"
-          icons={tableIcons}
-          columns={columns}
-        //   data={data}
-          options={{
-            exportButton: true,
-            pageSizeOptions:[5,20,50],
-            exportAllData:true,
-            doubleHorizontalScroll:true,
-            columnsButton:true,
-            headerStyle: {
-              backgroundColor: '#00447C',
-              color: '#FFF',
-              border: '1px solid black',
-              borderBottom:'none',
-              padding: 3,
-              textAlign: 'center',
-            },
-          }}
-        />
+    <MaterialTable
+      title="ANIMALS"
+      icons={tableIcons}
+      columns={columns}
+      data={data}
+      options={{
+        exportButton: true,
+        pageSizeOptions: [5, 20, 50],
+        exportAllData: true,
+        doubleHorizontalScroll: true,
+        columnsButton: true,
+        headerStyle: {
+          backgroundColor: '#004470',
+          color: '#FFF',
+          border: '1px solid black',
+          borderBottom: 'none',
+          padding: 10,
+          textAlign: 'center',
+        },
+      }}
+    />
   );
 
 
