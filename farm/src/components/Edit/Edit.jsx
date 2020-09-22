@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react'
 
@@ -9,6 +10,7 @@ function Edit(props) {
 
     const [showEdit, setShowEdit] = useState(false)
     const [item, setItem] = useState({})
+    const idRef = useRef("")
 
     function handleSubmit(e) {
 
@@ -27,13 +29,16 @@ function Edit(props) {
                 "Content-Type": "application/json"
             }
         }).then(res => res.json())
-            .then(data => { 
+            .then(data => {
                 console.log(data)
                 setShowEdit(false)
+                idRef.current.value=""
+                alert("UPDATED SUCCESSFULLY")
+
             })
     }
 
-    function handleEdit(e) {
+    function handleShowEdit(e) {
         e.preventDefault();
         const Id = e.target.Id.value
         console.log(Id)
@@ -46,18 +51,18 @@ function Edit(props) {
         }).then(res => res.json())
             .then(data => {
                 console.log(data)
-                if(data.length > 0){
+                if (data.length > 0) {
                     setItem(data[0])
                     console.log(data[0])
                     setShowEdit(true)
+
+                    
                 }
-                else{
+                else {
                     console.log("NOT FOUND")
+                    alert("THIS ID WAS NOT FOUND")
                 }
             })
-
-        
-        
 
     }
 
@@ -74,15 +79,15 @@ function Edit(props) {
                             Father: <input type="number" name="Father" defaultValue={item.father} /><br></br>
                             Date Of Birth: <input type="date" name="DateOfBirth" defaultValue={item.dateOfBirth} /><br></br>
                             Gender: <input type="text" name="Gender" defaultValue={item.gender} /><br></br>
-                            <input type="submit" value="Submit"/>
+                            <input type="submit" value="Submit" />
                         </label>
                     </form >
                 </div >
                 :
                 <div>
-                    <form onSubmit={handleEdit}>
+                    <form onSubmit={handleShowEdit}>
                         <label>
-                            ID: <input type="number" name="Id"/> <br></br>
+                            ID: <input type="number" name="Id" ref={idRef} /> <br></br>
                             <input type="submit" value="Edit" />
                         </label>
 

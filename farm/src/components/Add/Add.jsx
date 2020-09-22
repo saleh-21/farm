@@ -32,13 +32,13 @@ function Add(props) {
                 if (data) {
                     alert("ADDED SUCCESSFULLY")
                     setShowAdd(false)
-                }else{
+                } else {
                     alert("ID ALREADY IN USE")
                 }
             })
 
     }
-    function handleShowAdd(e){
+    function handleShowAdd(e) {
         e.preventDefault();
         setShowAdd(true)
 
