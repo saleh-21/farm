@@ -130,7 +130,7 @@ function MainTable() {
       data={data}
       options={{
         exportButton: true,
-        pageSizeOptions: [5, 20, 50],
+        pageSizeOptions: [5, 10, 20, 50],
         exportAllData: true,
         doubleHorizontalScroll: true,
         columnsButton: true,
@@ -140,6 +140,7 @@ function MainTable() {
           border: '1px solid black',
           borderBottom: 'none',
           padding: 10,
+          margin: 10,
           textAlign: 'center',
         },
       }}

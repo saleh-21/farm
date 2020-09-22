@@ -21,7 +21,9 @@ const Animal = new mongoose.model('Animal', {
 	mother: String,
 	father: String,
 	dateOfBirth: String,
-	gender: String
+	gender: String,
+	isPregnant: Boolean,
+	isAlive: Boolean
 })
 
 app.post('/getAllData', (req, res) => {
@@ -32,7 +34,7 @@ app.post('/getAllData', (req, res) => {
 })
 
 app.post('/add', (req, res) => {
-	const { Id, Mother, Father, DateOfBirth, Gender } = req.body
+	const { Id, Mother, Father, DateOfBirth, Gender, IsPregnant, IsAlive } = req.body
 	Animal.findOne({ ID: Id }).then(data => {
 		if (data != null) {
 			res.send(false)
@@ -42,7 +44,9 @@ app.post('/add', (req, res) => {
 				mother: Mother,
 				father: Father,
 				dateOfBirth: DateOfBirth,
-				gender: Gender
+				gender: Gender,
+				isPregnant: IsPregnant,
+				isAlive: IsAlive
 			})
 			a.save().then(console.log("DONE"))
 			res.send(true)
@@ -62,16 +66,18 @@ app.post('/getItemToEdit', (req, res) => {
 
 
 app.post('/edit', (req, res) => {
-	const { Id, Mother, Father, DateOfBirth, Gender } = req.body
-	// const a = new Animal({
-	// 	ID: Id,
-	// 	mother: Mother,
-	// 	father: Father,
-	// 	dateOfBirth: DateOfBirth,
-	// 	gender: Gender
-	// })
-	// a.save().then(console.log("DONE"))
-	Animal.updateOne({ ID: Id }, { $set: { mother: Mother, father: Father, dateOfBirth: DateOfBirth, gender: Gender } }).then(console.log("UPDATED"))
+	const { Id, Mother, Father, DateOfBirth, Gender, IsPregnant, IsAlive } = req.body
+
+	Animal.updateOne({ ID: Id }, {
+		$set: {
+			mother: Mother, 
+			father: Father, 
+			dateOfBirth: DateOfBirth, 
+			gender: Gender, 
+			isPregnant: IsPregnant, 
+			isAlive: IsAlive
+		}
+	}).then(console.log("UPDATED"))
 	console.log(req.body)
 	res.send(true)
 })

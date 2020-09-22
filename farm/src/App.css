@@ -72,6 +72,12 @@ input[type=submit] {
   border-radius: 5px; 
 }
 
+.genderSelect{ 
+   padding:5px; 
+  border:2px solid #ccc; 
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
 .showAdd{
   padding:5px 15px; 
   background:#ccc; 
