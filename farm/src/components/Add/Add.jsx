@@ -34,7 +34,6 @@ function Add(props) {
                     setShowAdd(false)
                 }else{
                     alert("ID ALREADY IN USE")
-
                 }
             })
 
@@ -59,7 +58,7 @@ function Add(props) {
                 </form>
                 :
                 <div>
-                    <button onClick={handleShowAdd} className="showAdd">SHOW ADD MENU</button>
+                    <button onClick={handleShowAdd} className="showAdd">ADD NEW ITEM</button>
                 </div>
             }
         </div>
