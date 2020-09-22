@@ -38,7 +38,7 @@ function MainTable(props){
   // Table Titles 
   const columns = [
     {
-      title: 'jiraId', field: 'jiraId',
+      title: 'ID', field: 'ID',
       cellStyle: {  
         minWidth: 150,
         border: '1px solid steelBlue',
@@ -48,7 +48,7 @@ function MainTable(props){
       },
     },
     {
-      title: 'jira Name', field: 'jiraName',
+      title: 'Mother', field: 'Mother',
       cellStyle: {
         minWidth: 300,
         border: '1px solid steelBlue',
@@ -57,7 +57,7 @@ function MainTable(props){
       },
     },
     {
-      title: 'jira Type', field: 'jiraType',
+      title: 'Father', field: 'Father',
       cellStyle: {
         minWidth: 100,
         border: '1px solid steelBlue',
@@ -66,7 +66,7 @@ function MainTable(props){
       },
     },
     {
-      title: 'Jira Priority', field: 'jiraPriority',
+      title: 'DateOfBirth', field: 'DateOfBirth',
       cellStyle: {
         minWidth: 150,
         border: '1px solid steelBlue',
@@ -76,7 +76,7 @@ function MainTable(props){
       },
     },
     {
-      title: 'Jira Item Status', field: 'JiraItemStatus',
+      title: 'Gender', field: 'Gender',
       cellStyle: {
         minWidth: 150,
         border: '1px solid steelBlue',
@@ -84,118 +84,7 @@ function MainTable(props){
         color: 'black',
 
       },
-    },
-    {
-      title: 'jira Parent Id', field: 'jiraParentId',
-      cellStyle: {
-        minWidth: 200,
-        border: '1px solid steelBlue',
-        backgroundColor: 'whiteSmoke',
-        color: 'black',
-
-      },
-    },
-    {
-      title: 'Functional Test', field: 'functionalTest',
-      cellStyle: {
-        minWidth: 150,
-        border: '1px solid steelBlue',
-        backgroundColor: 'whiteSmoke',
-        color: 'black',
-      },
-    },
-    {
-      title: 'Qa Representative', field: 'qaRepresentative',
-      cellStyle: {
-        minWidth: 200,
-        border: '1px solid steelBlue',
-        backgroundColor: 'whiteSmoke',
-        color: 'black',
-      },
-    },
-    {
-      title: 'Fix Version', field: 'fixVersion',
-      cellStyle: {
-        minWidth: 150,
-        border: '1px solid steelBlue',
-        backgroundColor: 'whiteSmoke',
-        color: 'black',
-      },
-    },
-    {
-      title: 'Qc Requirement Id', field: 'qcRequirementId',
-      cellStyle: {
-        minWidth: 150,
-        border: '1px solid steelBlue',
-        backgroundColor: 'whiteSmoke',
-        color: 'black',
-      },
-    },
-    {
-      title: 'Qc Requirement Type', field: 'qcRequirementType',
-      cellStyle: {
-        minWidth: 200,
-        border: '1px solid steelBlue',
-        backgroundColor: 'whiteSmoke',
-        color: 'black',
-      },
-    },
-    {
-      title: 'QC Status', field: 'qcStatus',
-      cellStyle: {
-        minWidth: 150,
-        border: '1px solid steelBlue',
-        backgroundColor: 'whiteSmoke',
-        color: 'black',
-      },
-    },
-    {
-      title: 'Updated Time', field: 'updatedTime',
-      cellStyle: {
-        minWidth: 200,
-        border: '1px solid steelBlue',
-        backgroundColor: 'whiteSmoke',
-        color: 'black',
-      },
-    },
-    {
-      title: 'Modify type ', field: 'modifyType',
-      cellStyle: {
-        height: 'fit-content',
-        minWidth: 200,
-        border: '1px solid steelBlue',
-        backgroundColor: 'whiteSmoke',
-        color: 'black',
-      },
-    },
-    {
-      title: 'Field Name', field: 'fieldName',
-      cellStyle: {
-        height: 'fit-content',
-        minWidth: 200,
-        border: '1px solid steelBlue',
-        backgroundColor: 'whiteSmoke',
-        color: 'black',
-      },
-    },
-    {
-      title: 'Old Value', field: 'oldValue',
-      cellStyle: {
-        minWidth: 100,
-        border: '1px solid steelBlue',
-        backgroundColor: 'whiteSmoke',
-        color: 'black',
-      },
-    },
-    {
-      title: 'New Value', field: 'newValue',
-      cellStyle: {
-        minWidth: 100,
-        border: '1px solid steelBlue',
-        backgroundColor: 'whiteSmoke',
-        color: 'black',
-      },
-    },
+    }
   ]
 
   // 
