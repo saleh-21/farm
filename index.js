@@ -9,7 +9,7 @@ app.use(
 	})
 );
 
-app.use(express.static("/farm/build"));
+app.use(express.static("public"));
 
 const url = "mongodb+srv://saleh:saleh1996@cluster0.kpqta.mongodb.net/farm";
 const mongoose = require('mongoose');
