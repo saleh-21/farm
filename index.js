@@ -10,6 +10,7 @@ app.use(
 );
 
 app.use(express.static("public"));
+
 const url = "mongodb+srv://saleh:saleh1996@cluster0.kpqta.mongodb.net/farm";
 const mongoose = require('mongoose');
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -23,20 +24,31 @@ const Animal = new mongoose.model('Animal', {
 	gender: String
 })
 
+app.post('/getAllData', (req,res)=>{
+	Animal.find({}).then(data => {
+		console.log(data)
+		res.send(data)
+	})
+})
 
 app.post('/add', (req, res) => {
 	const { Id, Mother, Father, DateOfBirth, Gender } = req.body
-	const a = new Animal({
-		ID: Id,
-		mother: Mother,
-		father: Father,
-		dateOfBirth: DateOfBirth,
-		gender: Gender
+	Animal.findOne({ ID: Id }).then(data => {
+		if(data != null){
+			res.send(false)
+		}
+		const a = new Animal({
+			ID: Id,
+			mother: Mother,
+			father: Father,
+			dateOfBirth: DateOfBirth,
+			gender: Gender
+		})
+		a.save().then(console.log("DONE"))
+		res.send(true)
 	})
-	a.save().then(console.log("DONE"))
-	console.log(req.body)
-	res.send(true)
 })
+
 
 
 app.post('/getItemToEdit', (req, res) => {
