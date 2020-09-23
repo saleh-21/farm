@@ -2,12 +2,14 @@ import React from 'react'
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react'
+import MainTable from '../Table/MainTable'
 
 
 import "./Edit.css"
 
 function Edit(props) {
 
+    const {UIData,setUIData} = props
     const [showEdit, setShowEdit] = useState(false)
     const [item, setItem] = useState({})
     
@@ -16,8 +18,19 @@ function Edit(props) {
 
     const idRef = useRef("")
 
-    let pregnant="";
-    let alive ="";
+    function updateUIData(){
+        fetch('/getAllData', {
+            method: "POST",
+            body: JSON.stringify({}),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          }).then(res => res.json())
+            .then(data => {
+              setUIData(data)
+              console.log("EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT ")
+            })
+    }
 
     function handleSubmit(e) {
 
@@ -45,6 +58,7 @@ function Edit(props) {
                 console.log(data)
                 setShowEdit(false)
                 idRef.current.value = ""
+                updateUIData()
                 alert("UPDATED SUCCESSFULLY")
 
             })

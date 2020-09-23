@@ -19,10 +19,11 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 
+function MainTable(props) {
 
-function MainTable() {
+  // const [animals, setAnimals] = useState([])
 
-  const [animals, setAnimals] = useState([])
+  const {UIData,setUIData,mainTitle} = props
 
   useEffect(() => {
     fetch('/getAllData', {
@@ -33,9 +34,13 @@ function MainTable() {
       }
     }).then(res => res.json())
       .then(data => {
-        setAnimals(data)
+        setUIData(data)
+        console.log("WE ARE HERE")
       })
   }, [])
+
+  // setAnimals(UIData)
+  
 
 
   // Intiliaze Icons 
@@ -67,7 +72,7 @@ function MainTable() {
     {
       title: 'Mother', field: 'Mother',
       cellStyle: {
-        minWidth: 300,
+        minWidth: 150,
         border: '1px solid steelBlue',
         backgroundColor: 'whiteSmoke',
         color: 'black',
@@ -76,14 +81,14 @@ function MainTable() {
     {
       title: 'Father', field: 'Father',
       cellStyle: {
-        minWidth: 100,
+        minWidth: 150,
         border: '1px solid steelBlue',
         backgroundColor: 'whiteSmoke',
         color: 'black',
       },
     },
     {
-      title: 'DateOfBirth', field: 'DateOfBirth',
+      title: 'Date Of Birth', field: 'DateOfBirth',
       cellStyle: {
         minWidth: 150,
         border: '1px solid steelBlue',
@@ -101,15 +106,32 @@ function MainTable() {
         color: 'black',
 
       },
+    },
+    {
+      title: 'Is Pregnant', field: 'IsPregnant',
+      cellStyle: {
+        minWidth: 150,
+        border: '1px solid steelBlue',
+        backgroundColor: 'whiteSmoke',
+        color: 'black',
+
+      },
+    },
+    {
+      title: 'Is Alive', field: 'IsAlive',
+      cellStyle: {
+        minWidth: 150,
+        border: '1px solid steelBlue',
+        backgroundColor: 'whiteSmoke',
+        color: 'black',
+
+      },
     }
   ]
 
 
-
-  console.log(animals)
-
   let data = []
-  animals.map((animal) => {
+  UIData.map((animal) => {
     return data = [...data,
     {
       ID: animal.ID,
@@ -117,6 +139,8 @@ function MainTable() {
       Father: animal.father,
       DateOfBirth: animal.dateOfBirth,
       Gender: animal.gender,
+      IsPregnant: animal.isPregnant,
+      IsAlive: animal.isAlive
 
     }
     ]
@@ -124,7 +148,7 @@ function MainTable() {
 
   return (
     <MaterialTable
-      title="ANIMALS"
+      title={mainTitle}
       icons={tableIcons}
       columns={columns}
       data={data}

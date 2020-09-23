@@ -10,6 +10,7 @@ function Add(props) {
     const [showAdd, setShowAdd] = useState(false);
     const [pregCheck, setPregCheck] = useState(false);
     const [aliveCheck, setAliveCheck] = useState(true);
+    const {UIData,setUIData} = props
 
 
 
@@ -25,6 +26,8 @@ function Add(props) {
         const Gender = G.options[G.selectedIndex].value
         const IsPregnant = e.target.IsPregnant.checked
         const IsAlive = e.target.IsAlive.checked
+        console.log(Id)
+        if(Id != ""){
         fetch('/add', {
             method: "POST",
             body: JSON.stringify({ Id, Mother, Father, DateOfBirth, Gender, IsPregnant, IsAlive }),
@@ -37,10 +40,14 @@ function Add(props) {
                 if (data) {
                     alert("ADDED SUCCESSFULLY")
                     setShowAdd(false)
+                    updateUIData()
                 } else {
                     alert("ID ALREADY IN USE")
                 }
             })
+        }else{
+            alert("ID CAN NOT BE EMPTY")
+        }
 
     }
     function handleShowAdd(e) {
@@ -48,11 +55,28 @@ function Add(props) {
         setShowAdd(true)
 
     }
+
+
+    function updateUIData(){
+        fetch('/getAllData', {
+            method: "POST",
+            body: JSON.stringify({}),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          }).then(res => res.json())
+            .then(data => {
+              setUIData(data)
+              console.log("EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT EDIT ")
+            })
+    }
+
+
     const today = new Date().toISOString().substr(0, 10);;
     return (
         <div className>
             <h1>ADD</h1>
-            {true ?
+            {showAdd ?
                 <form onSubmit={handleSubmit}>
                     ID:  <input type="number" name="Id" /> <br></br>
                     Mother: <input type="number" name="Mother" /><br></br>
