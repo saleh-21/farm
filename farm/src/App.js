@@ -39,17 +39,9 @@ function App() {
 				</div>
 
 
-				{/* <div className="addComp">
-					<Add UIData={UIData} setUIData={setUIData}></Add>
-				</div>
-
-				<div className="editComp">
-					<Edit UIData={UIData} setUIData={setUIData}></Edit>
-				</div>
-
 				<div className="mainTableComp">
 					<MainTable UIData={UIData} setUIData={setUIData} mainTitle="ALL THE DATA"></MainTable>
-				</div> */}
+				</div>
 
 
 			</div>
