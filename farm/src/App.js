@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Add from '../src/components/Add/Add';
 import Edit from '../src/components/Edit/Edit'
@@ -8,26 +8,28 @@ import MainTable from './components/Table/MainTable';
 
 function App() {
 
-  console.log("AAAAAA")
-  return (
-    <div className="App">
-      <div className="App-header">
+	const [UIData, setUIData] = useState([])
 
-        <div className="addComp">
-          <Add></Add>
-        </div>
 
-        <div className="editComp">
-          <Edit></Edit>
-        </div>
+	return (
+		<div className="App">
+			<div className="App-header">
 
-        <div className="mainTableComp">
-          {<MainTable></MainTable>}
-        </div>
-      </div>
+				<div className="addComp">
+					<Add UIData={UIData} setUIData={setUIData}></Add>
+				</div>
 
-    </div>
-  );
+				<div className="editComp">
+					<Edit UIData={UIData} setUIData={setUIData}></Edit>
+				</div>
+
+				<div className="mainTableComp">
+					<MainTable UIData={UIData} setUIData={setUIData} mainTitle="ALL THE DATA"></MainTable>
+				</div>
+			</div>
+
+		</div>
+	);
 }
 
 export default App;
