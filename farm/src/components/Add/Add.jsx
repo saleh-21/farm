@@ -7,7 +7,6 @@ import "./Add.css"
 
 function Add(props) {
 
-    const [showAdd, setShowAdd] = useState(false);
     const [pregCheck, setPregCheck] = useState(false);
     const [aliveCheck, setAliveCheck] = useState(true);
     const {UIData,setUIData} = props
@@ -39,7 +38,6 @@ function Add(props) {
                 console.log(data)
                 if (data) {
                     alert("ADDED SUCCESSFULLY")
-                    setShowAdd(false)
                     updateUIData()
                 } else {
                     alert("ID ALREADY IN USE")
@@ -50,11 +48,7 @@ function Add(props) {
         }
 
     }
-    function handleShowAdd(e) {
-        e.preventDefault();
-        setShowAdd(true)
 
-    }
 
 
     function updateUIData(){
@@ -76,7 +70,6 @@ function Add(props) {
     return (
         <div className>
             <h1>ADD</h1>
-            {showAdd ?
                 <form onSubmit={handleSubmit}>
                     ID:  <input type="number" name="Id" /> <br></br>
                     Mother: <input type="number" name="Mother" /><br></br>
@@ -95,11 +88,7 @@ function Add(props) {
 
                     <input type="submit" value="Submit" className="button" />
                 </form>
-                :
-                <div>
-                    <button onClick={handleShowAdd} className="showAdd">ADD NEW ITEM</button>
-                </div>
-            }
+
         </div>
     )
 
